@@ -1,13 +1,11 @@
 //package linkedLists;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 //import java.util.ArrayList;
 //import java.util.List;
-import java.util.Scanner;
+
 
 
 
@@ -49,17 +47,66 @@ public class CardGame {
         // Print the loaded cards
         System.out.println("Cards loaded:");
         cardList.displayList();
-		
-		Card[] playerHand = new Card[5];
-		for(int i = 0; i < playerHand.length; i++)
-			playerHand[i] = cardList.getFirst();
-		
-		System.out.println("players hand");
-		for(int i = 0; i < playerHand.length; i++)
-			System.out.println(playerHand[i]);
-		
-		System.out.println();
-		System.out.println("the deck");
+
+        Card[] player1Hand = new Card[5];
+        Card[] player2Hand = new Card[5];
+
+        for (int i = 0; i < 5; i++) {
+            player1Hand[i] = cardList.getFirst();
+            player2Hand[i] = cardList.getFirst();
+        }
+
+        System.out.println("Player 1 Hand:");
+        for (int i = 0; i < 5; i++) 
+            System.out.println(player1Hand[i]);
+
+            System.out.println("Player 2 Hand:");
+        for (int i = 0; i < 5; i++) 
+            System.out.println(player2Hand[i]);
+
+            int player1Score = 0;
+            int player2Score = 0;
+
+             System.out.println(" Game Start ");
+
+             for (int i = 0; i < 5; i++) {
+                Card p1Card = player1Hand[i];
+                Card p2Card = player2Hand[i];
+             
+
+              System.out.println(" Round " + (i + 1) + ":");
+              System.out.println("Player 1 plays:" + p1Card);
+              System.out.println("Player 2 plays:" + p2Card);
+
+             if (p1Card.getCardValue() > p2Card.getCardValue()) {
+                System.out.println(" Player 1 wins the round! ");
+                player1Score++;
+              } else if (p2Card.getCardValue() > p1Card.getCardValue()) {
+                System.out.println(" Player 2 wins the round! ");
+                player2Score++;
+              }else {
+                System.out.println(" Its a tie");
+
+              }
+              System.out.println();
+
+            }
+
+		System.out.println(" Final Score ");
+		System.out.println("Player 1: " + player1Score);
+        System.out.println("Player 2: " + player2Score);
+
+        if (player1Score > player2Score) {
+            System.out.println(" Player 1 wins the game! ");
+        } else if (player2Score > player1Score)  {
+            System.out.println(" Player 2 wins the game! ");
+        } else {
+             System.out.println(" Its a tie! ");
+        }
+
+
+        System.out.println();
+        System.out.println(" The deck ");
 		cardList.displayList();
 
 	}//end main
